@@ -39,7 +39,7 @@ Objectif : démontrer la maîtrise complète d'Angular 22 pour les recruteurs.
 
 - **Zoneless par défaut** — pas de Zone.js, détection de changements signal-driven
 - **Signal Forms (stable)** — remplace les Reactive Forms classiques, API signal-based
-- **OnPush par défaut** — tous les nouveaux composants utilisent OnPush
+- **OnPush implicite en zoneless** — sans Zone.js, `Default` et `OnPush` se comportent identiquement ; ne pas écrire `changeDetection: OnPush` explicitement (redondant)
 - **httpResource / rxResource** — pour les appels HTTP réactifs
 - **Vitest** — framework de test officiel
 
@@ -270,8 +270,7 @@ npx playwright test
 ### Module 5 — State Management avec Signals
 - `signal()`, `computed()`, `effect()`
 - Partage d'état via services
-- Zoneless change detection
-- OnPush par défaut
+- Zoneless change detection (OnPush implicite — ne pas l'écrire explicitement)
 
 ### Module 6 — PrimeNG & UI
 - Composants de tableau (`p-table`)

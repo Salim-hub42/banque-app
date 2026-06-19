@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+:root {
+  --boa-red:        #E31837;
+  --boa-red-dark:   #c0141f;
+  --boa-navy:       #012169;
+  --boa-bg:         #F8F8F8;
+  --boa-surface:    #ffffff;
+  --boa-text:       #333333;
+  --boa-text-light: #666666;
+  --boa-border:     #e0e0e0;
+  --boa-success:    #2E7D32;
+  --boa-warning:    #F57C00;
+  --boa-danger:     #C62828;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: var(--boa-bg);
+  color: var(--boa-text);
+  font-size: 16px;
+}
