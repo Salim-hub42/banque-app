@@ -1,1 +1,26 @@
-<p>navbar works!</p>
+<nav class="flex align-items-center justify-content-between px-5"
+     style="background-color: var(--boa-navy); height: 64px;">
+
+  <div class="flex align-items-center" style="flex: 1;">
+    <span class="text-white font-bold text-2xl">BanqueApp</span>
+  </div>
+
+  <div class="flex align-items-center justify-content-center gap-3" style="flex: 1;">
+    <span class="text-white text-sm">{{ messageNotifications() }}</span>
+    <p-button icon="pi pi-bell" (onClick)="ajouterNotification()"
+      severity="secondary" [rounded]="true" size="small" />
+    <p-button label="Tout lire" (onClick)="supprimerNotification()"
+      severity="secondary" size="small" />
+  </div>
+
+  <div class="flex align-items-center justify-content-end gap-3" style="flex: 1;">
+    <span class="text-white text-sm">Bonjour <strong>{{ nomAffiche() }}</strong> !</span>
+    <p-button
+      [label]="estConnecte() ? 'Déconnexion' : 'Connexion'"
+      (onClick)="basculerConnexion()"
+      severity="danger"
+      size="small"
+    />
+  </div>
+
+</nav>
