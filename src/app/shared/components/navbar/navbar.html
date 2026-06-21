@@ -9,13 +9,13 @@
     <span class="text-white text-sm">{{ messageNotifications() }}</span>
     <p-button icon="pi pi-bell" (onClick)="ajouterNotification()"
       severity="secondary" [rounded]="true" size="small" />
-    <p-button label="Tout lire" (onClick)="supprimerNotification()"
+    <p-button label="Marquer comme lu" (onClick)="marquerCommeLu()"
       severity="secondary" size="small" />
   </div>
 
   <div class="flex align-items-center justify-content-end gap-3" style="flex: 1;">
   @if (estConnecte()) {
-    <span class="text-white text-sm">Solde : <strong>{{ solde() | formatSolde:'EUR':'fr-FR' }}</strong></span>
+    <span class="text-white text-sm">Solde : <strong appMontantNegatif [montant]="solde()">{{ solde() | formatSolde:'EUR':'fr-FR' }}</strong></span>
   }
   
     <span class="text-white text-sm">Bonjour <strong>{{ nomAffiche() }}</strong> !</span>

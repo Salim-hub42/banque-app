@@ -1,10 +1,11 @@
 import { Component, signal, computed, effect } from '@angular/core';
 import { Button } from 'primeng/button';
 import { FormatSoldePipe } from '../../pipes/format-solde-pipe';
+import { MontantNegatif } from '../../directives/montant-negatif';
 
 @Component({
   selector: 'app-navbar',
-  imports: [Button, FormatSoldePipe], 
+  imports: [Button, FormatSoldePipe, MontantNegatif], 
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
@@ -14,7 +15,7 @@ export class Navbar {
   estConnecte = signal<boolean>(false);
   nomAffiche = computed(() => this.estConnecte() ? 'Jean Dupond' : 'Invité');
   nbNotifications = signal<number>(0);
-  solde = signal<number>(12350.5);
+  solde = signal<number>(10500.50);
   messageNotifications = computed(() => {
     const nb = this.nbNotifications();
     if (nb === 0 ) return 'Aucune notification';
@@ -35,7 +36,7 @@ export class Navbar {
     this.nbNotifications.update(val => val + 1);
   }
 
-  supprimerNotification() {
+  marquerCommeLu() {
     this.nbNotifications.set(0);
   }
 
