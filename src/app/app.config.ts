@@ -2,6 +2,7 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/
 import { provideRouter } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
 import { definePreset } from '@primeuix/themes';
+import { withComponentInputBinding } from '@angular/router';
 import Aura from '@primeuix/themes/aura';
 
 import { routes } from './app.routes';
@@ -45,8 +46,8 @@ const BofAPreset = definePreset(Aura, {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
-providePrimeNG({
+    provideRouter(routes, withComponentInputBinding()),
+    providePrimeNG({
       theme: {
         preset: BofAPreset,
         options: {

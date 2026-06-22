@@ -2,7 +2,7 @@
      style="background-color: var(--boa-navy); height: 64px;">
 
   <div class="flex align-items-center" style="flex: 1;">
-    <span class="text-white font-bold text-2xl">BanqueApp</span>
+    <span class="text-white font-bold text-2xl"><a routerLink="/dashboard" style="text-decoration: none; color: inherit;">BanqueApp</a></span>
   </div>
 
   <div class="flex align-items-center justify-content-center gap-3" style="flex: 1;">
@@ -11,6 +11,9 @@
       severity="secondary" [rounded]="true" size="small" />
     <p-button label="Marquer comme lu" (onClick)="marquerCommeLu()"
       severity="secondary" size="small" />
+      <a routerLink="/dashboard" class="text-white text-sm" style="text-decoration: none; color: inherit;">Dashboard</a>
+      <a routerLink="/clients" class="text-white text-sm" style="text-decoration: none; color: inherit;">Clients</a>
+      <a routerLink="/comptes" class="text-white text-sm" style="text-decoration: none; color: inherit;">Comptes</a>
   </div>
 
   <div class="flex align-items-center justify-content-end gap-3" style="flex: 1;">
