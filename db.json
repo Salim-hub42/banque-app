@@ -1,0 +1,112 @@
+{
+  "utilisateurs": [
+    {
+      "id": 1,
+      "email": "admin@banque.fr",
+      "password": "admin123",
+      "role": "admin",
+      "nom": "Dupont",
+      "prenom": "Marie"
+    }
+  ],
+  "clients": [
+    {
+      "id": 1,
+      "nom": "Martin",
+      "prenom": "Jean",
+      "email": "jean.martin@email.fr",
+      "telephone": "06 12 34 56 78",
+      "dateNaissance": "1985-03-15",
+      "adresse": "12 rue de la Paix, 75001 Paris"
+    },
+    {
+      "id": 2,
+      "nom": "Bernard",
+      "prenom": "Sophie",
+      "email": "sophie.bernard@email.fr",
+      "telephone": "06 98 76 54 32",
+      "dateNaissance": "1992-07-22",
+      "adresse": "8 avenue Foch, 69006 Lyon"
+    },
+    {
+      "id": 3,
+      "nom": "Leroy",
+      "prenom": "Pierre",
+      "email": "pierre.leroy@email.fr",
+      "telephone": "07 11 22 33 44",
+      "dateNaissance": "1978-11-30",
+      "adresse": "3 place du Capitole, 31000 Toulouse"
+    }
+  ],
+  "comptes": [
+    {
+      "id": 1,
+      "clientId": 1,
+      "numero": "FR76 3000 6000 0112 3456 7890 189",
+      "type": "courant",
+      "solde": 2450.75,
+      "statut": "actif",
+      "dateOuverture": "2020-01-10"
+    },
+    {
+      "id": 2,
+      "clientId": 1,
+      "numero": "FR76 3000 6000 0198 7654 3210 456",
+      "type": "epargne",
+      "solde": 15000.00,
+      "statut": "actif",
+      "dateOuverture": "2021-06-01"
+    },
+    {
+      "id": 3,
+      "clientId": 2,
+      "numero": "FR76 3000 6000 0156 7890 1234 789",
+      "type": "courant",
+      "solde": 890.20,
+      "statut": "actif",
+      "dateOuverture": "2019-09-15"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "compteId": 1,
+      "type": "depot",
+      "montant": 500.00,
+      "description": "Virement salaire",
+      "date": "2026-06-01"
+    },
+    {
+      "id": 2,
+      "compteId": 1,
+      "type": "retrait",
+      "montant": 120.50,
+      "description": "Retrait DAB",
+      "date": "2026-06-05"
+    },
+    {
+      "id": 3,
+      "compteId": 1,
+      "type": "virement",
+      "montant": 200.00,
+      "description": "Virement vers épargne",
+      "date": "2026-06-10"
+    },
+    {
+      "id": 4,
+      "compteId": 2,
+      "type": "depot",
+      "montant": 200.00,
+      "description": "Virement depuis compte courant",
+      "date": "2026-06-10"
+    },
+    {
+      "id": 5,
+      "compteId": 3,
+      "type": "depot",
+      "montant": 1200.00,
+      "description": "Virement salaire",
+      "date": "2026-06-02"
+    }
+  ]
+}

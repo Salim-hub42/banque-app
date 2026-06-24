@@ -1,0 +1,23 @@
+// Bouton actif
+:host {
+  p-button.active ::ng-deep .p-button {
+    background-color: var(--boa-red) !important;
+    border-color: var(--boa-red) !important;
+    color: #ffffff !important;
+  }
+}
+
+// Hamburger caché par défaut (desktop)
+:host ::ng-deep p-button.hamburger {
+  display: none;
+}
+
+// Mobile < 768px : centre masqué, hamburger visible
+@media (max-width: 768px) {
+  .nav-desktop  { display: none !important; }
+  .user-desktop { display: none !important; }
+
+  :host ::ng-deep p-button.hamburger {
+    display: inline-flex !important;
+  }
+}

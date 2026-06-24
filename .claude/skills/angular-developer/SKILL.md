@@ -49,32 +49,38 @@ Tu es le mentor Angular 22 de cet apprenant. Il suit une formation structurée e
 - Méthodes actions : infinitif en camelCase → `basculerConnexion()`, `ajouterNotification()`
 - Signals : nom descriptif → `estConnecte`, `nbNotifications`, `nomAffiche`
 - Computed : nom du résultat → `soldeTotal`, `messageNotifications`
+- Injectés : `private readonly` → `private readonly router = inject(Router)`
 
 ## Avancement formation
 
 ### Module 1 — Fondations ✅ TERMINÉ
-1. Structure du projet ✅
-2. Standalone components & `input()` ✅
-3. Data binding ✅
-4. Signals : `signal()`, `computed()`, `effect()` ✅
-5. Pipes intégrés et personnalisés ✅
-6. Directives personnalisées ✅
+### Module 2 — Routing & Navigation ✅ TERMINÉ
 
-### Module 2 — Routing & Navigation ⏳ EN COURS
-1. Configuration des routes (`app.routes.ts`) ⏳
-2. Lazy loading par feature ⏳
-3. Route guards ⏳
-4. Paramètres de route et query params ⏳
-5. Navigation impérative vs déclarative ⏳
+### Module 3 — Formulaires ⏳ EN COURS
+1. Reactive Forms — **LEÇON DONNÉE, EXERCICE EN ATTENTE**
+2. Signal Forms (Angular 22) ⏳
+3. Validateurs personnalisés ⏳
+4. Gestion réactive des erreurs ⏳
+5. Formulaires imbriqués ⏳
 
-### Modules 3 à 8 — À venir
-- Formulaires, Services & HTTP, State Management, PrimeNG avancé, Performance, Tests
+**Exercice leçon 1 :**
+- `ng g c features/auth/components/login`
+- FormBuilder avec `email` (required + email) et `motDePasse` (required + minLength 6)
+- Template avec `p-inputtext`, `p-password`, `p-button` désactivé si invalide
+- Route `/login` sans guard dans `app.routes.ts`
+
+### Modules 4 à 8 — À venir
 
 ## Ce qui est déjà implémenté
 
-- **Navbar** (`src/app/shared/components/navbar/`) — connexion, notifications, solde, liens de navigation
+- **Navbar** responsive — 3 colonnes flex:1, hamburger mobile, `routerLinkActive`, texte notifications `min-width: 120px`
 - **Pipe** `formatSolde` (`src/app/shared/pipes/format-solde-pipe.ts`)
 - **Directive** `appMontantNegatif` (`src/app/shared/directives/montant-negatif.ts`)
-- **Pages** scaffoldées : Dashboard, Clients, Comptes (`src/app/features/`)
-- **Thème** Bank of America : rouge `#E31837`, bleu marine `#012169`
-- **PrimeFlex** importé dans `styles.scss`
+- **Routes** :
+  - `/dashboard` → import direct
+  - `/clients` → lazy + `authGuard`
+  - `/clients/:id` → lazy + `authGuard`
+  - `/comptes` → lazy + `authGuard`
+  - `**` → redirect dashboard
+- **Guard** `authGuard` — `estConnecte = false` en dur
+- **`withComponentInputBinding()`** dans `app.config.ts`

@@ -9,9 +9,10 @@ import { Button } from 'primeng/button';
   styleUrl: './clients.scss',
 })
 export class Clients {
-  private router = inject(Router);
+  private readonly router = inject(Router);
 
   navigateToClientDetail(clientId: string) {
+    console.log('Navigation vers client', clientId)
     this.router.navigate(['/clients', clientId]);
   }
 }

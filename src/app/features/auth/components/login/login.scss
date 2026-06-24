@@ -1,0 +1,28 @@
+.bg-login {
+  background-color: var(--boa-bg);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.logo-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #fdecea;
+}
+
+.btn-primary {
+  background-color: var(--boa-red) !important;
+  border-color: var(--boa-red) !important;
+
+  &:hover {
+    background-color: var(--boa-red-dark) !important;
+    border-color: var(--boa-red-dark) !important;
+  }
+}

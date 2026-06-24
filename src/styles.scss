@@ -29,3 +29,19 @@ body {
   color: var(--boa-text);
   font-size: 16px;
 }
+
+/**  .p-inputtext.ng-invalid.ng-touched, .p-textarea.ng-invalid.ng-touched, .p-select.ng-invalid.ng-touched ici permet de définir les styles pour les champs de saisie invalides et touchés **/
+.p-inputtext.ng-invalid.ng-touched{ // cette classe est appliquée aux champs de saisie qui sont invalides et qui ont été touchés par l'utilisateur
+  border-color: var(--p-inputtext-invalid-border-color);// primeNG utilise des variables CSS pour définir les couleurs, ici on utilise la variable --p-inputtext-invalid-border-color pour définir la couleur de la bordure des champs de saisie invalides
+}
+
+.invalid-feedback {
+  display: none; // par défaut, les messages d'erreur ne sont pas affichés
+  color: var(--p-red-500)
+}
+
+.ng-invalid.ng-dirty + .invalid-feedback,
+.ng-invalid.ng-touched + .invalid-feedback  { // ng dirty signifie que l'utilisateur a modifié le champ de saisie, et ng-invalid signifie que le champ de saisie est invalide
+  display: block;// lorsque le champ de saisie est invalide et que l'utilisateur a modifié le champ, le message d'erreur est affiché
+}
+

@@ -1,33 +1,62 @@
-<nav class="flex align-items-center justify-content-between px-5"
-     style="background-color: var(--boa-navy); height: 64px;">
+<nav class="flex align-items-center justify-content-between px-4"
+     style="background-color: var(--boa-navy); min-height: 64px;">
 
-  <div class="flex align-items-center" style="flex: 1;">
-    <span class="text-white font-bold text-2xl"><a routerLink="/dashboard" style="text-decoration: none; color: inherit;">BanqueApp</a></span>
+  <!-- Colonne gauche : Logo -->
+  <div class="flex align-items-center py-2" style="flex: 1;">
+    <span class="text-white font-bold text-2xl">
+      <a routerLink="/dashboard" style="text-decoration: none; color: inherit;">BanqueApp</a>
+    </span>
   </div>
 
-  <div class="flex align-items-center justify-content-center gap-3" style="flex: 1;">
-    <span class="text-white text-sm">{{ messageNotifications() }}</span>
-    <p-button icon="pi pi-bell" (onClick)="ajouterNotification()"
-      severity="secondary" [rounded]="true" size="small" />
-    <p-button label="Marquer comme lu" (onClick)="marquerCommeLu()"
-      severity="secondary" size="small" />
-      <a routerLink="/dashboard" class="text-white text-sm" style="text-decoration: none; color: inherit;">Dashboard</a>
-      <a routerLink="/clients" class="text-white text-sm" style="text-decoration: none; color: inherit;">Clients</a>
-      <a routerLink="/comptes" class="text-white text-sm" style="text-decoration: none; color: inherit;">Comptes</a>
+  <!-- Colonne centre : Navigation + Notifications -->
+  <div class="nav-desktop flex align-items-center justify-content-center gap-3" style="flex: 2;">
+    <p-button label="Dashboard" routerLink="/dashboard" routerLinkActive="active" severity="secondary" size="small" />
+    <p-button label="Clients" routerLink="/clients" routerLinkActive="active" severity="secondary" size="small" />
+    <p-button label="Comptes" routerLink="/comptes" routerLinkActive="active" severity="secondary" size="small" />
+
+    <span class="text-white text-sm" style="min-width: 120px; text-align: right;">{{ messageNotifications() }}</span>
+    <p-button icon="pi pi-bell" (onClick)="ajouterNotification()" severity="secondary" [rounded]="true" size="small" />
+    <p-button label="Marquer comme lu" (onClick)="marquerCommeLu()" severity="secondary" size="small" />
   </div>
 
-  <div class="flex align-items-center justify-content-end gap-3" style="flex: 1;">
-  @if (estConnecte()) {
-    <span class="text-white text-sm">Solde : <strong appMontantNegatif [montant]="solde()">{{ solde() | formatSolde:'EUR':'fr-FR' }}</strong></span>
-  }
-  
-    <span class="text-white text-sm">Bonjour <strong>{{ nomAffiche() }}</strong> !</span>
+  <!-- Colonne droite : Solde + utilisateur -->
+  <div class="flex align-items-center justify-content-end gap-3 py-2" style="flex: 1;">
+
+    @if (estConnecte()) {
+      <span class="text-white text-sm">
+        <strong appMontantNegatif [montant]="solde()">{{ solde() | formatSolde:'EUR':'fr-FR' }}</strong>
+      </span>
+    }
+
+    <span class="user-desktop text-white text-sm">Bonjour <strong>{{ nomAffiche() }}</strong> !</span>
+
     <p-button
       [label]="estConnecte() ? 'Déconnexion' : 'Connexion'"
       (onClick)="basculerConnexion()"
       severity="danger"
       size="small"
     />
+
+    <p-button
+      class="hamburger"
+      icon="pi pi-bars"
+      (onClick)="toggleMenu()"
+      severity="secondary"
+      [rounded]="true"
+      size="small"
+    />
   </div>
 
 </nav>
+
+<!-- Menu mobile -->
+@if (menuOuvert()) {
+  <div class="flex flex-column gap-2 px-4 py-3" style="background-color: var(--boa-navy);">
+    <p-button label="Dashboard" routerLink="/dashboard" routerLinkActive="active"
+      severity="secondary" size="small" (onClick)="toggleMenu()" styleClass="w-full" />
+    <p-button label="Clients" routerLink="/clients" routerLinkActive="active"
+      severity="secondary" size="small" (onClick)="toggleMenu()" styleClass="w-full" />
+    <p-button label="Comptes" routerLink="/comptes" routerLinkActive="active"
+      severity="secondary" size="small" (onClick)="toggleMenu()" styleClass="w-full" />
+  </div>
+}

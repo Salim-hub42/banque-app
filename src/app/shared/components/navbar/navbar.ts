@@ -2,11 +2,11 @@ import { Component, signal, computed, effect } from '@angular/core';
 import { Button } from 'primeng/button';
 import { FormatSoldePipe } from '../../pipes/format-solde-pipe';
 import { MontantNegatif } from '../../directives/montant-negatif';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [Button, FormatSoldePipe, MontantNegatif, RouterLink], 
+  imports: [Button, FormatSoldePipe, MontantNegatif, RouterLink, RouterLinkActive], 
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
@@ -40,6 +40,13 @@ export class Navbar {
   marquerCommeLu() {
     this.nbNotifications.set(0);
   }
+
+  menuOuvert = signal(false);
+
+  toggleMenu() {
+    this.menuOuvert.update(v => !v);
+  }
+
 
 
 
