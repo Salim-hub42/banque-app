@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Password } from 'primeng/password';
 import { InputText } from 'primeng/inputtext';
 import { Button } from 'primeng/button';
+import { AuthService } from '../../../../core/services/auth-service';
 
 @Component({
   selector: 'app-login',
@@ -12,18 +13,18 @@ import { Button } from 'primeng/button';
   styleUrl: './login.scss',
 })
 export class Login {
-
-   fb = inject(FormBuilder);
+   private authService = inject(AuthService);
+   private fb = inject(FormBuilder);
    form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
    });
 
-    //En attentte d'un service ...
+   
    onSubmit() {
      this.form.markAllAsTouched()
      if(this.form.invalid) return
-     console.log(this.form.value)
+     this.authService.login(this.form.value.email!, this.form.value.password!);
 
    }
 

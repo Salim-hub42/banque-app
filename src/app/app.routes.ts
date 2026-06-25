@@ -4,8 +4,8 @@ import { Dashboard } from './features/dashboard/components/dashboard/dashboard';
 import { Login } from './features/auth/components/login/login';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: Dashboard },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'dashboard', canActivate: [authGuard], component: Dashboard },
   { path: 'login', component: Login },
 
   {
@@ -32,5 +32,5 @@ export const routes: Routes = [
         .then(m => m.Comptes)
   },
   
-  { path: '**', redirectTo: 'dashboard' },
+  { path: '**', redirectTo: 'login' },
 ];

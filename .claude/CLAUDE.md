@@ -40,6 +40,7 @@ Objectif : démontrer la maîtrise complète d'Angular 22 pour les recruteurs.
 - **Zoneless par défaut** — pas de Zone.js, détection de changements signal-driven
 - **Signal Forms (stable)** — remplace les Reactive Forms classiques, API signal-based
 - **OnPush implicite en zoneless** — sans Zone.js, `Default` et `OnPush` se comportent identiquement ; ne pas écrire `changeDetection: OnPush` explicitement (redondant)
+- **`@Service()`** — nouveau décorateur qui remplace `@Injectable({ providedIn: 'root' })`, singleton par défaut
 - **httpResource / rxResource** — pour les appels HTTP réactifs
 - **Vitest** — framework de test officiel
 
@@ -101,7 +102,7 @@ Objectif : démontrer la maîtrise complète d'Angular 22 pour les recruteurs.
 ## Services & HTTP
 
 - Concevoir les services autour d'une seule responsabilité
-- Utiliser `providedIn: 'root'` pour les services singleton
+- Utiliser `@Service()` (Angular 22) — remplace `@Injectable({ providedIn: 'root' })`, singleton par défaut
 - Utiliser `inject()` au lieu de l'injection par constructeur
 - **HttpClient** — maîtriser GET, POST, PUT, DELETE avec typage générique
 - **httpResource()** — pour les appels HTTP réactifs basés sur signals (Angular 22)
@@ -229,6 +230,7 @@ npx playwright test
 - Ne jamais utiliser le type `any`
 - Ne jamais utiliser `*ngIf`, `*ngFor` (utiliser `@if`, `@for`)
 - Ne jamais utiliser l'injection par constructeur (utiliser `inject()`)
+- Ne jamais utiliser `@Injectable()` — utiliser `@Service()` (Angular 22)
 - Ne jamais utiliser Karma ou Jasmine (dépréciés — utiliser Vitest)
 - Ne jamais utiliser Angular Material (on utilise PrimeNG exclusivement)
 - Ne jamais mélanger Signal Forms et Reactive Forms classiques dans le même formulaire
