@@ -1,5 +1,6 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
+
 import { providePrimeNG } from 'primeng/config';
 import { definePreset } from '@primeuix/themes';
 import { withComponentInputBinding } from '@angular/router';

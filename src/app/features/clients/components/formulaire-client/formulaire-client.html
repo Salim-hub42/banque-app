@@ -1,0 +1,104 @@
+<div class="flex justify-content-center align-items-start min-h-screen py-6" style="background: var(--boa-bg)">
+  <div class="surface-card border-round-lg shadow-3 p-5" style="width: 100%; max-width: 560px">
+
+    <!-- En-tête -->
+    <div class="flex align-items-center gap-3 mb-5 pb-4" style="border-bottom: 3px solid var(--boa-red)">
+      <i class="pi pi-user-plus text-3xl" style="color: var(--boa-red)"></i>
+      <div>
+        <h2 class="m-0 text-xl font-bold" style="color: var(--boa-navy)">Nouveau client</h2>
+        <p class="m-0 text-sm" style="color: var(--boa-text-light)">Remplissez les informations du client</p>
+      </div>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column gap-4">
+
+      <!-- Nom -->
+      <div class="flex flex-column gap-1">
+        <label for="nom" class="font-semibold text-sm" style="color: var(--boa-navy)">Nom <span style="color: var(--boa-red)">*</span></label>
+        <input pInputText id="nom" formControlName="nom" placeholder="ex : Dupont" class="w-full" />
+        @if (nom?.touched) {
+          @if (nom?.errors?.['required']) {
+            <small class="p-error"><i class="pi pi-exclamation-circle mr-1"></i>Le nom est obligatoire.</small>
+          } @else if (nom?.errors?.['minlength']) {
+            <small class="p-error"><i class="pi pi-exclamation-circle mr-1"></i>Minimum 2 caractères.</small>
+          }
+        }
+      </div>
+
+      <!-- Email -->
+      <div class="flex flex-column gap-1">
+        <label for="email" class="font-semibold text-sm" style="color: var(--boa-navy)">Email <span style="color: var(--boa-red)">*</span></label>
+        <input pInputText id="email" formControlName="email" type="email" placeholder="ex : dupont@email.com" class="w-full" />
+        @if (email?.touched) {
+          @if (email?.errors?.['required']) {
+            <small class="p-error"><i class="pi pi-exclamation-circle mr-1"></i>L'email est obligatoire.</small>
+          } @else if (email?.errors?.['email']) {
+            <small class="p-error"><i class="pi pi-exclamation-circle mr-1"></i>Format d'email invalide.</small>
+          }
+        }
+      </div>
+
+      <!-- Adresse -->
+      <div class="flex flex-column gap-3 border-round p-4" style="background: #f4f6fb; border: 1px solid var(--boa-border)">
+        <p class="m-0 font-semibold text-sm mb-1" style="color: var(--boa-navy)">
+          <i class="pi pi-map-marker mr-2" style="color: var(--boa-red)"></i>Adresse
+        </p>
+
+        <div formGroupName="adresse" class="flex flex-column gap-3">
+
+          <!-- Rue -->
+          <div class="flex flex-column gap-1">
+            <label for="rue" class="font-semibold text-sm" style="color: var(--boa-navy)">Rue <span style="color: var(--boa-red)">*</span></label>
+            <input pInputText id="rue" formControlName="rue" placeholder="ex : 12 rue de la Paix" class="w-full" />
+            @if (rue?.touched && rue?.errors?.['required']) {
+              <small class="p-error"><i class="pi pi-exclamation-circle mr-1"></i>La rue est obligatoire.</small>
+            }
+          </div>
+
+          <div class="flex gap-3">
+
+            <!-- Ville -->
+            <div class="flex flex-column gap-1 flex-1">
+              <label for="ville" class="font-semibold text-sm" style="color: var(--boa-navy)">Ville <span style="color: var(--boa-red)">*</span></label>
+              <input pInputText id="ville" formControlName="ville" placeholder="ex : Paris" class="w-full" />
+              @if (ville?.touched && ville?.errors?.['required']) {
+                <small class="p-error"><i class="pi pi-exclamation-circle mr-1"></i>La ville est obligatoire.</small>
+              }
+            </div>
+
+            <!-- Code postal -->
+            <div class="flex flex-column gap-1" style="width: 140px">
+              <label for="codePostal" class="font-semibold text-sm" style="color: var(--boa-navy)">Code postal <span style="color: var(--boa-red)">*</span></label>
+              <input pInputText id="codePostal" formControlName="codePostal" placeholder="75001" class="w-full" />
+              @if (codePostal?.touched) {
+                @if (codePostal?.errors?.['required']) {
+                  <small class="p-error"><i class="pi pi-exclamation-circle mr-1"></i>Obligatoire.</small>
+                } @else if (codePostal?.errors?.['pattern']) {
+                  <small class="p-error"><i class="pi pi-exclamation-circle mr-1"></i>5 chiffres requis.</small>
+                }
+              }
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex justify-content-end gap-2 mt-2">
+        <p-button
+          type="button"
+          label="Annuler"
+          severity="secondary"
+          [outlined]="true"
+          icon="pi pi-times" />
+        <p-button
+          type="submit"
+          label="Enregistrer le client"
+          icon="pi pi-check"
+          [disabled]="form.invalid"
+          [style]="{'background': 'var(--boa-navy)', 'border-color': 'var(--boa-navy)'}" />
+      </div>
+
+    </form>
+  </div>
+</div>

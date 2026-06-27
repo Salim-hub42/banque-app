@@ -17,6 +17,13 @@ export const routes: Routes = [
   },
 
   {
+    path: 'clients/nouveau',
+    loadComponent: () =>
+      import('./features/clients/components/formulaire-client/formulaire-client')
+        .then(m => m.FormulaireClient)
+  },
+
+  {
     path: 'clients/:id',
     canActivate: [authGuard],
     loadComponent: () =>

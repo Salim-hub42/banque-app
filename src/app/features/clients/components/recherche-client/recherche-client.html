@@ -1,17 +1,53 @@
-<form [formRoot]="contactForm">
-  <div [formField]="contactForm.name">
-    <label for="name">Nom</label>
-    <input id="name" type="text" />
-    @if (contactForm.name().invalid()) {
-      <small>Le nom est invalide.</small>
-    }
+<div class="card border-round-xl shadow-4 p-5 w-full">
+
+  <div class="flex align-items-center gap-3 mb-5">
+    <div class="flex align-items-center justify-content-center border-round-lg"
+         style="width:42px; height:42px; background-color: var(--boa-navy);">
+      <i class="pi pi-users text-white text-xl"></i>
+    </div>
+    <div>
+      <h2 class="text-xl font-bold m-0" style="color: var(--boa-navy);">Recherche client</h2>
+      <p class="text-sm m-0" style="color: var(--boa-text-light);">Trouvez un client par nom ou ville</p>
+    </div>
   </div>
-    <div [formField]="contactForm.ville">
-    <label for="ville">Ville</label>
-    <input id="ville" type="text" />
-    @if (contactForm.ville().invalid()) {
-      <small>La ville est invalide.</small>
-    }
-  </div>
-  <button type="submit" (click)="onSubmit()">Rechercher</button>
-</form>
+
+  <form [formRoot]="contactForm" class="flex flex-column gap-4">
+
+    <div class="flex flex-column gap-2">
+      <label for="name" class="font-semibold text-sm">Nom du client</label>
+      <input
+        id="name"
+        type="text"
+        pInputText
+        [formField]="contactForm.name"
+        class="w-full"
+      />
+      @if (contactForm.name().invalid() && contactForm.name().touched()) {
+        <small class="text-red-500 text-sm">{{ contactForm.name().errors()[0]?.message }}</small>
+      }
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="ville" class="font-semibold text-sm">Ville</label>
+      <input
+        id="ville"
+        type="text"
+        pInputText
+        [formField]="contactForm.ville"
+        placeholder="Ex : Paris"
+        class="w-full"
+      />
+      @if (contactForm.ville().invalid() && contactForm.ville().touched()) {
+        <small class="text-red-500 text-sm">{{ contactForm.ville().errors()[0]?.message }}</small>
+      }
+    </div>
+
+    <p-button
+      label="Rechercher"
+      icon="pi pi-search"
+      styleClass="w-full"
+      (onClick)="onSubmit()"
+    />
+
+  </form>
+</div>
