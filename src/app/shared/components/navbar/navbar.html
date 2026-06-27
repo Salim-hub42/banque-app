@@ -31,8 +31,9 @@
     <span class="user-desktop text-white text-sm">Bonjour <strong>{{ nomAffiche() }}</strong> !</span>
 
     <p-button
-      [label]="estConnecte() ? 'Déconnexion' : 'Connexion'"
-      (onClick)="basculerConnexion()"
+      label ="Se déconnecter"
+      icon="pi pi-sign-out"
+      (onClick)="logout()"
       severity="danger"
       size="small"
     />

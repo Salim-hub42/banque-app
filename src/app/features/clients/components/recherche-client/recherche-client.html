@@ -1,0 +1,17 @@
+<form [formRoot]="contactForm">
+  <div [formField]="contactForm.name">
+    <label for="name">Nom</label>
+    <input id="name" type="text" />
+    @if (contactForm.name().invalid()) {
+      <small>Le nom est invalide.</small>
+    }
+  </div>
+    <div [formField]="contactForm.ville">
+    <label for="ville">Ville</label>
+    <input id="ville" type="text" />
+    @if (contactForm.ville().invalid()) {
+      <small>La ville est invalide.</small>
+    }
+  </div>
+  <button type="submit" (click)="onSubmit()">Rechercher</button>
+</form>
