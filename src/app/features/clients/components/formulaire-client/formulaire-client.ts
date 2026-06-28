@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Button } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-
+import { ibanFrancaisValidator } from '../../../../shared/validators/iban-validator/iban-validator';
 @Component({
   selector: 'app-formulaire-client',
   imports: [ReactiveFormsModule, Button, InputTextModule],
@@ -15,6 +15,7 @@ export class FormulaireClient {
   form = this.fB.group({
     nom: ['',  [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
+    iban: ['', [Validators.required, ibanFrancaisValidator]],
     adresse: this.fB.group({
       rue: ['', Validators.required],
       ville: ['', Validators.required],
@@ -28,6 +29,10 @@ get nom() {
 
 get email() {
   return this.form.get('email');
+}
+
+get iban() {
+  return this.form.get('iban');
 }
 
 get adresse() {

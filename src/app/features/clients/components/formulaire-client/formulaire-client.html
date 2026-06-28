@@ -38,6 +38,25 @@
         }
       </div>
 
+      <!-- IBAN -->
+      <div class="flex flex-column gap-1">
+        <label for="iban" class="font-semibold text-sm" style="color: var(--boa-navy)">IBAN <span style="color: var(--boa-red)">*</span></label>
+        <input
+          pInputText
+          id="iban"
+          formControlName="iban"
+          placeholder="FR76 3000 6000 0112 3456 7890 189"
+          class="w-full"
+        />
+        @if (iban?.touched) {
+          @if (iban?.errors?.['required']) {
+            <small class="p-error"><i class="pi pi-exclamation-circle mr-1"></i>L'IBAN est obligatoire.</small>
+          } @else if (iban?.errors?.['ibanInvalide']) {
+            <small class="p-error"><i class="pi pi-exclamation-circle mr-1"></i>IBAN français invalide (ex : FR76 3000 6000 0112 3456 7890 189).</small>
+          }
+        }
+      </div>
+
       <!-- Adresse -->
       <div class="flex flex-column gap-3 border-round p-4" style="background: #f4f6fb; border: 1px solid var(--boa-border)">
         <p class="m-0 font-semibold text-sm mb-1" style="color: var(--boa-navy)">
