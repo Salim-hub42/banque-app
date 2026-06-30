@@ -1,5 +1,18 @@
 <div class="flex justify-content-center align-items-start p-5">
-  <div class="w-4">
-    <app-recherche-client />
+  <div class="w-full md:w-4">
+    <app-recherche-client (rechercheLancee)="onRechercheLancee($event)" />
+   <p class="text-sm text-gray-500 mt-2 mb-4">Résultats de la recherche : {{ recherche() }}</p> 
+
+    @if (clients.isLoading()) {
+      <p-progressSpinner />
+    }
+
+    @if (clients.error()) {
+      <p class="p-error">Erreur de chargement.</p>
+    }
+
+    @for (client of clients.value() ?? []; track client.id) {
+      <div>{{ client.nom }} {{ client.prenom }}</div>
+    }
   </div>
 </div>

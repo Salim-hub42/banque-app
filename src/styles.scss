@@ -31,6 +31,7 @@ body {
 }
 
 /**  .p-inputtext.ng-invalid.ng-touched, .p-textarea.ng-invalid.ng-touched, .p-select.ng-invalid.ng-touched ici permet de définir les styles pour les champs de saisie invalides et touchés **/
+
 .p-inputtext.ng-invalid.ng-touched{ // cette classe est appliquée aux champs de saisie qui sont invalides et qui ont été touchés par l'utilisateur
   border-color: var(--p-inputtext-invalid-border-color);// primeNG utilise des variables CSS pour définir les couleurs, ici on utilise la variable --p-inputtext-invalid-border-color pour définir la couleur de la bordure des champs de saisie invalides
 }

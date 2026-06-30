@@ -8,7 +8,9 @@ export class AuthService {
    private http = inject(HttpClient);
    private router = inject(Router);
 
-   utilisateurConnecte = signal<Utilisateur | null>(null);
+   utilisateurConnecte = signal<Utilisateur | null>(
+    JSON.parse(localStorage.getItem('utilisateur') ?? 'null')
+  );
 
    estConnecte = computed(() => this.utilisateurConnecte() !== null);
 
@@ -16,6 +18,7 @@ export class AuthService {
      this.http.get<Utilisateur[]>(`http://localhost:3000/utilisateurs?email=${email}&password=${password}`).subscribe(users => {
       if (users.length > 0) {
          this.utilisateurConnecte.set(users[0]);
+         localStorage.setItem('utilisateur', JSON.stringify(users[0]));
          this.router.navigate(['/dashboard']);
       }
      });
@@ -23,6 +26,7 @@ export class AuthService {
 
    logout() {
        this.utilisateurConnecte.set(null);
+       localStorage.removeItem('utilisateur');
        this.router.navigate(['/login']);
    }
 

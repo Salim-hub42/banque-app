@@ -7,6 +7,14 @@
       "role": "admin",
       "nom": "Dupont",
       "prenom": "Marie"
+    },
+       {
+      "id": 2,
+      "email": "admin2@banque.fr",
+      "password": "admin1234",
+      "role": "admin",
+      "nom": "Salim",
+      "prenom": "Khalfoun"
     }
   ],
   "clients": [

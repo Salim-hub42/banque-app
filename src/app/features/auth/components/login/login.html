@@ -10,18 +10,32 @@
       <p class="text-color-secondary mt-1 mb-0">Connectez-vous à votre espace</p>
     </div>
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formRoot]="loginForm" (submit)="onSubmit()" class="flex flex-column gap-4">
 
       <div class="field mb-4">
         <label for="email" class="block font-medium mb-2">Email</label>
-        <input id="email" pInputText formControlName="email" type="email" class="w-full" />
-        <small class="invalid-feedback">Email valide requis</small>
+        <input id="email" pInputText [formField]="loginForm.email" type="email" class="w-full" />
+        @if (loginForm.email().touched()) {
+          @if (loginForm.email().errors()?.[0]?.kind === 'required') {
+            <small class="p-error">L'email est obligatoire.</small>
+          }
+          @if (loginForm.email().errors()?.[0]?.kind === 'email') {
+            <small class="p-error">Format d'email invalide.</small>
+          }
+        }
       </div>
 
       <div class="field mb-4">
         <label for="password" class="block font-medium mb-2">Mot de passe</label>
-        <p-password inputId="password" class="w-full" inputStyleClass="w-full" formControlName="password" [feedback]="false" />
-        <small class="invalid-feedback">Le mot de passe est requis (min 6 carac.)</small>
+        <input pInputText id="password" type="password" [formField]="loginForm.password" class="w-full" />
+        @if (loginForm.password().touched()) {
+          @if (loginForm.password().errors()?.[0]?.kind === 'required') {
+            <small class="p-error">Le mot de passe est obligatoire.</small>
+          }
+          @if (loginForm.password().errors()?.[0]?.kind === 'minLength') {
+            <small class="p-error">Minimum 6 caractères.</small>
+          }
+        }
       </div>
 
       <p-button type="submit" label="Se connecter" styleClass="w-full btn-primary mt-2" />

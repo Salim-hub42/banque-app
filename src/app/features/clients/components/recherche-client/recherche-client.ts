@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, output } from '@angular/core';
 import { ClientFormsModel } from '../../client-forms-model'; 
 import { form, required, minLength, submit, FormRoot, FormField } from '@angular/forms/signals';
 import { Button } from 'primeng/button';
@@ -10,9 +10,10 @@ import { InputText } from 'primeng/inputtext';
   templateUrl: './recherche-client.html',
   styleUrl: './recherche-client.scss',
 })
+
 export class RechercheClient {
 
-
+  rechercheLancee = output<string>();
 
   private model = signal<ClientFormsModel>({
     name: '',
@@ -27,7 +28,7 @@ export class RechercheClient {
 
   async onSubmit() {
     await submit(this.contactForm, async (field) => {
-      console.log('Formulaire soumis :', field().value());
+      this.rechercheLancee.emit(field().value().name);
       return null;
     });
   }

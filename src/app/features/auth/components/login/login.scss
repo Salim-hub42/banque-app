@@ -1,3 +1,8 @@
+.p-inputtext.ng-invalid:not(.ng-touched) {
+  border-color: var(--p-inputtext-border-color);
+  box-shadow: none;
+}
+
 .bg-login {
   background-color: var(--boa-bg);
 }
