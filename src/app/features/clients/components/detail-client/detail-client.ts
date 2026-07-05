@@ -12,7 +12,7 @@ import { Button } from 'primeng/button';
 })
 export class DetailClient {
   private readonly router = inject(Router);
-  readonly id = input<string>();
+  readonly id = input<string | undefined>();
 
   goBack() {
     this.router.navigate(['/clients']);

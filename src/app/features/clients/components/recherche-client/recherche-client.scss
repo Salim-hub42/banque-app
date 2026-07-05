@@ -1,0 +1,4 @@
+input.ng-invalid:not(.ng-touched) {
+  border-color: var(--p-inputtext-border-color) !important;
+  box-shadow: none !important;
+}

@@ -55,21 +55,38 @@ Tu es le mentor Angular 22 de cet apprenant. Il suit une formation structurée e
 
 ### Module 1 — Fondations ✅ TERMINÉ
 ### Module 2 — Routing & Navigation ✅ TERMINÉ
+### Module 3 — Formulaires ✅ TERMINÉ
+### Module 4 — Services & HTTP ✅ TERMINÉ
 
-### Module 3 — Formulaires ⏳ EN COURS
-1. Reactive Forms — **LEÇON DONNÉE, EXERCICE EN ATTENTE**
-2. Signal Forms (Angular 22) ⏳
-3. Validateurs personnalisés ⏳
-4. Gestion réactive des erreurs ⏳
-5. Formulaires imbriqués ⏳
+| # | Leçon | Statut |
+|---|-------|--------|
+| 1 | `@Service()`, `inject()`, signals dans un service | ✅ |
+| 2 | `httpResource()` pour les appels réactifs | ✅ |
+| 3 | Intercepteurs HTTP (`authInterceptor`) | ✅ |
 
-**Exercice leçon 1 :**
-- `ng g c features/auth/components/login`
-- FormBuilder avec `email` (required + email) et `motDePasse` (required + minLength 6)
-- Template avec `p-inputtext`, `p-password`, `p-button` désactivé si invalide
-- Route `/login` sans guard dans `app.routes.ts`
+### Module 5 — State Management Signals ✅ TERMINÉ
 
-### Modules 4 à 8 — À venir
+- `ClientService` centralisé avec `clients`, `isLoading`, `error` signals
+- `chargerClients(recherche)` avec `HttpClient` + `finalize` RxJS
+- `ajouterClient(nouveauClient: Omit<Client, 'id'>)` avec POST
+- Composant `Clients` injecte le service, lit les signals directement
+
+### Module 6 — PrimeNG & UI ✅ TERMINÉ
+
+| # | Leçon | Statut |
+|---|-------|--------|
+| 1 | `p-table` avec tri, filtre, stripedRows, emptymessage | ✅ |
+| 2 | `p-toast` + `MessageService` | ✅ |
+| 3 | `p-dialog` + formulaire Signal Form ajout client | ✅ |
+| 4 | `p-confirmDialog` suppression client (`ConfirmationService`, `supprimerClient()` dans `ClientService`) | ✅ |
+
+### Module 7 — Fonctionnalités avancées ⏳ EN COURS
+
+| # | Leçon | Statut |
+|---|-------|--------|
+| 1 | `DetailClient` = détail + modification (GET par id, `modeEdition` signal, `modifierClient()` PUT/PATCH dans `ClientService`) | ⏳ LEÇON DONNÉE, EXERCICE EN ATTENTE |
+
+### Module 8 — Performance & Qualité ⏳
 
 ## Ce qui est déjà implémenté
 
@@ -84,3 +101,11 @@ Tu es le mentor Angular 22 de cet apprenant. Il suit une formation structurée e
   - `**` → redirect dashboard
 - **Guard** `authGuard` — `estConnecte = false` en dur
 - **`withComponentInputBinding()`** dans `app.config.ts`
+- **Feature Clients** (`src/app/features/clients/`) :
+  - `ClientService` (`core/services/client-service.ts`) — signals centralisés, `chargerClients()`, `ajouterClient()`
+  - `clients.ts` — injecte `ClientService`, `dialogOuvert` signal, `formDialog` Signal Form (6 champs)
+  - `clients.html` — `p-table` avec tri, bouton "Nouveau client", `p-dialog` avec formulaire 2 colonnes
+  - `recherche-client.ts` — `output<string>()` `rechercheLancee`, Signal Form nom + ville
+  - `client-model.ts` — interface `Client` : `id, nom, prenom, email, telephone, dateNaissance, adresse`
+- **Auth** : `AuthService` (localStorage), `authInterceptor` (Bearer token), `authGuard`
+- **Infrastructure** : json-server v1 (`?nom=` pour filtrer, pas de `?q=`) sur port 3000 (`npm run api`), Angular sur port 4200 (`npm start`)

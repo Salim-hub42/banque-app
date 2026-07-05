@@ -5,6 +5,7 @@ import { authInterceptor } from './core/interceptors/auth-interceptor';
 import { providePrimeNG } from 'primeng/config';
 import { definePreset } from '@primeuix/themes';
 import { withComponentInputBinding } from '@angular/router';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import Aura from '@primeuix/themes/aura';
 
 import { routes } from './app.routes';
@@ -50,6 +51,8 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(withInterceptors([authInterceptor])),
     provideRouter(routes, withComponentInputBinding()),
+    MessageService,
+    ConfirmationService,
     providePrimeNG({
       theme: {
         preset: BofAPreset,
