@@ -1,1 +1,26 @@
-<p>dashboard works!</p>
+<div>
+  <app-section-card>
+    <span titre class="flex align-items-center gap-2 font-semibold text-lg">
+      <i class="pi pi-users"></i>
+       Clients
+    </span>
+       <p class="text-4xl font-bold m-0">{{ clients().length }}</p>
+  </app-section-card>
+
+    <app-section-card>
+    <span titre class="flex align-items-center gap-2 font-semibold text-lg">
+      <i class="pi pi-chart-pie"></i>
+      Répartition des comptes
+    </span>
+
+    @defer (on viewport; prefetch on idle) {
+      <app-graphique-clients />
+    } @placeholder {
+      <div class="surface-100 border-round" style="height: 300px"></div>
+    } @loading (after 100ms; minimum 500ms) {
+      <div class="flex align-items-center justify-content-center" style="height: 300px">
+        Chargement du graphique…
+      </div>
+    }
+  </app-section-card>
+</div>
