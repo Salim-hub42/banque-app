@@ -9,12 +9,12 @@ import { InputText } from 'primeng/inputtext';
 import { ClientService } from '../../../../core/services/client-service';
 import { Client } from '../clients/client-model';
 import { form, required,  submit , FormRoot , FormField } from '@angular/forms/signals';
-
+import { SectionCard } from '../../../../shared/components/section-cards/section-card/section-card';
 
 
 @Component({
   selector: 'app-detail-client',
-  imports: [Button, FormRoot, FormField, Card, Avatar, Tag, Divider, InputText],
+  imports: [Button, FormRoot, FormField, Card, Avatar, Tag, Divider, InputText,SectionCard],
   templateUrl: './detail-client.html',
   styleUrl: './detail-client.scss',
 })

@@ -69,8 +69,8 @@
     </p-card>
   } @else {
     @if (clientRessource.value(); as client) {
-      <p-card>
-        <div class="flex align-items-center gap-3 mb-4">
+      <app-section-card>
+        <div class="flex align-items-center gap-3 " titre>
           <p-avatar [label]="(client.prenom.charAt(0) + client.nom.charAt(0)).toUpperCase()" size="xlarge" shape="circle" class="bg-primary text-white" />
           <div>
             <h2 class="m-0">{{ client.prenom }} {{ client.nom }}</h2>
@@ -102,7 +102,7 @@
         <div class="flex justify-content-end pt-4">
           <p-button label="Modifier" icon="pi pi-pencil" (onClick)="passerEnEdition(client)" />
         </div>
-      </p-card>
+      </app-section-card>
     }
   }
 
