@@ -58,28 +58,64 @@
   "comptes": [
     {
       "id": "1",
-      "clientId": 1,
-      "numero": "FR76 3000 6000 0112 3456 7890 189",
+      "clientId": "1",
+      "iban": "FR76 3000 6000 0112 3456 7890 189",
       "type": "courant",
       "solde": 2450.75,
       "statut": "actif",
       "dateOuverture": "2020-01-10"
     },
-    {
+     {
       "id": "2",
-      "clientId": 1,
-      "numero": "FR76 3000 6000 0198 7654 3210 456",
+      "clientId": "1",
+      "iban": "FR76 3000 9696 0112 3456 7890 189",
+      "type": "epargne",
+      "solde": 5450.75,
+      "statut": "actif",
+      "dateOuverture": "2020-01-10"
+    },
+    {
+      "id": "3",
+      "clientId": "2",
+      "iban": "FR76 3000 6000 0198 7654 3210 456",
       "type": "epargne",
       "solde": 15000,
       "statut": "actif",
       "dateOuverture": "2021-06-01"
     },
+      {
+      "id": "4",
+      "clientId": "2",
+      "iban": "FR76 9966 6000 0198 7654 3210 456",
+      "type": "courant",
+      "solde": 10,
+      "statut": "suspendu",
+      "dateOuverture": "2021-06-01"
+    },
     {
-      "id": "3",
-      "clientId": 2,
-      "numero": "FR76 3000 6000 0156 7890 1234 789",
+      "id": "5",
+      "clientId": "3",
+      "iban": "FR76 3000 6000 0156 7890 1234 789",
       "type": "courant",
       "solde": 890.2,
+      "statut": "actif",
+      "dateOuverture": "2019-09-15"
+    },
+        {
+      "id": "6",
+      "clientId": "3",
+      "iban": "FR76 3000 9789 0156 7890 1234 789",
+      "type": "epargne",
+      "solde": 0,
+      "statut": "cloture",
+      "dateOuverture": "2019-09-15"
+    },
+       {
+      "id": "7",
+      "clientId": "4",
+      "iban": "FR76 8520 6000 0156 7890 1234 789",
+      "type": "courant",
+      "solde": 15890.2,
       "statut": "actif",
       "dateOuverture": "2019-09-15"
     }

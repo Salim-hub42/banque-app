@@ -1,0 +1,40 @@
+import { inject, Service, signal } from '@angular/core';
+import { Compte } from '../../features/comptes/components/comptes/compte-model';
+import { finalize } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
+
+@Service()
+export class CompteService {
+   private http = inject(HttpClient);
+  private message = inject(MessageService);
+
+   comptes = signal<Compte[]>([]);
+   isLoading = signal(false);
+   error = signal<string | null>(null);
+
+
+   chargerComptes(clientId = '') {
+      const params: Record<string, string> = clientId ? { clientId } : {};
+      this.isLoading.set(true);
+      this.error.set(null);
+  
+      this.http.get<Compte[]>('http://localhost:3000/comptes', { params })
+        .pipe(finalize(() => this.isLoading.set(false)))
+        .subscribe({
+          next: (comptes) => {
+              this.comptes.set(comptes);
+          }, 
+          error: () => {
+            this.error.set('Erreur lors du chargement des comptes');
+            this.message.add({ severity: 'error', summary: 'Erreur', detail: 'Erreur lors du chargement des comptes' });
+          },
+        });
+    }
+
+
+
+
+
+
+}
