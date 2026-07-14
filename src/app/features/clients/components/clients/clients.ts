@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { RechercheClient } from '../recherche-client/recherche-client';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -57,7 +57,18 @@ export class Clients {
   // le constructeur appelle la méthode pour charger les clients au démarrage du composant
   constructor() {
     this.serviceClient.chargerClients();
+    //le focus de primeNG prend le decu ici !
+    effect(() => {
+      const input = this.champNom();
+      if(input) {
+        input.nativeElement.focus()
+        console.log('le focus est la !')
+      }
+    });
   }
+
+   // ajoute de viewChild
+ champNom = viewChild<ElementRef<HTMLInputElement>>('champNom');
   
 
   onRechercheLancee(nouvelleRecherche: string) {
@@ -101,6 +112,10 @@ async onSubmit() {
     this.fermerDialog();
   });
  }
+
+
+
+ 
 
 
 
