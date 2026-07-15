@@ -32,12 +32,12 @@ export class Comptes {
       case 'suspendu':
         return 'warn'
       case 'cloture':
-        return 'danger'
+        return 'secondary'
     }
  }
 
 
 
 
- 
+
 }
