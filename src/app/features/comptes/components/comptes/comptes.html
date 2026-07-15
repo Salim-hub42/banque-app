@@ -1,1 +1,30 @@
+@if (error()) {
+   <p class="p-error">Erreur de chargement.</p>
+}
 
+<p-table [value]="comptes()" [loading]="isLoading()">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>IBAN</th>
+      <th>Type</th>
+      <th>Solde</th>
+      <th>Statut</th>
+      <th>Date d'ouverture</th>
+    </tr>
+  </ng-template>
+
+   <ng-template pTemplate="body" let-compte>
+    <tr>
+      <td>{{ compte.iban }}</td>
+      <td>{{ compte.type }}</td>
+      <td>{{ compte.solde | formatSolde }}</td>
+      <td>
+       <p-tag 
+          [value]="compte.statut"
+          [severity]="severiteStatut(compte.statut)">
+       </p-tag>
+      </td>
+      <td>{{ compte.dateOuverture }}</td>
+    </tr>
+  </ng-template>
+</p-table>

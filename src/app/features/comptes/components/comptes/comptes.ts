@@ -1,11 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { CompteService } from '../../../../core/services/compte-service';
 import { MessageService } from 'primeng/api';
+import { TableModule } from "primeng/table";
+import { FormatSoldePipe } from "../../../../shared/pipes/format-solde-pipe";
+import {  TagModule } from "primeng/tag";
+import { Compte } from './compte-model';
 
 
 @Component({
   selector: 'app-comptes',
-  imports: [],
+  imports: [TableModule, FormatSoldePipe, TagModule ],
   templateUrl: './comptes.html',
   styleUrl: './comptes.scss',
 })
@@ -20,6 +24,20 @@ export class Comptes {
  constructor () {
   this.compteService.chargerComptes();
  }
+ 
+ severiteStatut(statut: Compte['statut']) {
+    switch (statut) {
+      case 'actif':
+        return 'success'
+      case 'suspendu':
+        return 'warn'
+      case 'cloture':
+        return 'danger'
+    }
+ }
 
 
+
+
+ 
 }
