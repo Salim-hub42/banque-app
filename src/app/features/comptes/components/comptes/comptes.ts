@@ -5,6 +5,8 @@ import { TableModule } from "primeng/table";
 import { FormatSoldePipe } from "../../../../shared/pipes/format-solde-pipe";
 import {  TagModule } from "primeng/tag";
 import { Compte } from './compte-model';
+import { ConfirmationService } from 'primeng/api';
+
 
 
 @Component({
@@ -16,6 +18,7 @@ import { Compte } from './compte-model';
 export class Comptes {
  private compteService = inject(CompteService);
  message = inject(MessageService);
+ confirmation = inject(ConfirmationService)
 
  comptes = this.compteService.comptes;
  isLoading = this.compteService.isLoading;
@@ -35,6 +38,16 @@ export class Comptes {
         return 'secondary'
     }
  }
+
+ confirmerChangement(compte: Compte, nouveauStatut: Compte['statut']) {
+    this.confirmation.confirm({
+       header:' Êtes-vous sûr ? ',
+       message:`Passer le compte ${compte.iban} au statut : ${nouveauStatut} ?`,
+       accept: () => {
+        this.compteService.changerStatut(compte.id, nouveauStatut)
+       }
+    })
+ } 
 
 
 

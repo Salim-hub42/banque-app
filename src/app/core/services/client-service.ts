@@ -87,7 +87,6 @@ export class ClientService {
           this.message.add({ severity: 'error', summary: 'Erreur', detail: 'Erreur lors de la modification du client' });
         },
     })
-
   }
   
   //pour detail-client

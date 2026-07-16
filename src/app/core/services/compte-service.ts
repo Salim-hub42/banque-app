@@ -7,7 +7,7 @@ import { MessageService } from 'primeng/api';
 @Service()
 export class CompteService {
    private http = inject(HttpClient);
-  private message = inject(MessageService);
+   private message = inject(MessageService);
 
    comptes = signal<Compte[]>([]);
    isLoading = signal(false);
@@ -30,6 +30,24 @@ export class CompteService {
             this.message.add({ severity: 'error', summary: 'Erreur', detail: 'Erreur lors du chargement des comptes' });
           },
         });
+    }
+
+    changerStatut(id: string , statut: Compte['statut']) {
+           this.isLoading.set(true);
+           this.error.set(null);
+
+           this.http.patch<Compte>(`http://localhost:3000/comptes/${id}`, {statut}).pipe(
+            finalize(() => this.isLoading.set(false))
+           ).subscribe({
+            next: (compteModifie) => {
+              this.comptes.update(comptes => comptes.map(c  => c.id === id ? compteModifie : c));
+              this.message.add({ severity: 'success', summary: 'Succès', detail: 'statut modifié avec succès' });
+            },
+             error: () => {
+               this.error.set('Erreur lors de modif du statut');
+               this.message.add({ severity: 'error', summary: 'Erreur', detail: 'Erreur lors de la modification du statut' });
+            },
+        })
     }
 
 
