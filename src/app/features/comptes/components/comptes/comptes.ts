@@ -6,12 +6,14 @@ import { FormatSoldePipe } from "../../../../shared/pipes/format-solde-pipe";
 import {  TagModule } from "primeng/tag";
 import { Compte } from './compte-model';
 import { ConfirmationService } from 'primeng/api';
+import { Button } from "primeng/button";
+import { ConfirmDialog } from "primeng/confirmdialog";
 
 
 
 @Component({
   selector: 'app-comptes',
-  imports: [TableModule, FormatSoldePipe, TagModule ],
+  imports: [TableModule, FormatSoldePipe, TagModule, Button, ConfirmDialog  ],
   templateUrl: './comptes.html',
   styleUrl: './comptes.scss',
 })
@@ -38,6 +40,10 @@ export class Comptes {
         return 'secondary'
     }
  }
+  // fonction de typage car ng-template sera any sinon !
+  asCompte(compte: unknown): Compte {
+    return compte as Compte;
+}
 
  confirmerChangement(compte: Compte, nouveauStatut: Compte['statut']) {
     this.confirmation.confirm({
