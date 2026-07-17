@@ -16,7 +16,7 @@
 
    <ng-template pTemplate="body" let-compte>
     <tr>
-      <td>{{ asCompte(compte).iban }}</td>
+      <td>{{ asCompte(compte).iban | formatIban}}</td>
       <td>{{ asCompte(compte).type }}</td>
       <td>{{ compte.solde | formatSolde }}</td>
       <td>

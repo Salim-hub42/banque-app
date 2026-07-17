@@ -8,12 +8,13 @@ import { Compte } from './compte-model';
 import { ConfirmationService } from 'primeng/api';
 import { Button } from "primeng/button";
 import { ConfirmDialog } from "primeng/confirmdialog";
+import { FormatIbanPipe } from '../../../../shared/pipes/format-iban-pipe';
 
 
 
 @Component({
   selector: 'app-comptes',
-  imports: [TableModule, FormatSoldePipe, TagModule, Button, ConfirmDialog  ],
+  imports: [TableModule, FormatSoldePipe, TagModule, Button, ConfirmDialog, FormatIbanPipe  ],
   templateUrl: './comptes.html',
   styleUrl: './comptes.scss',
 })
