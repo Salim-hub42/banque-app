@@ -50,6 +50,24 @@ export class CompteService {
         })
     }
 
+     ajouterCompte(nouveauCompte: Omit<Compte, 'id'>) {
+        this.isLoading.set(true);
+        this.error.set(null);
+        
+        this.http.post<Compte>('http://localhost:3000/comptes', nouveauCompte)
+          .pipe(finalize(() => this.isLoading.set(false))) // finalize pour arrêter le spinner de chargement après la requête
+          .subscribe({
+            next: (compte) => {
+              this.comptes.update(comptes => [...comptes, compte]);
+              this.message.add({ severity: 'success', summary: 'Succès', detail: 'Compte ajouté avec succès' });
+            },
+            error: () => {
+              this.error.set('Erreur lors de l\'ajout du Compte');
+              this.message.add({ severity: 'error', summary: 'Erreur', detail: 'Erreur lors de l\'ajout du Compte' });
+            },
+          });
+      }
+
 
 
 
