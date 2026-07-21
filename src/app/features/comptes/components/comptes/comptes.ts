@@ -10,14 +10,19 @@ import { Button } from "primeng/button";
 import { ConfirmDialog } from "primeng/confirmdialog";
 import { FormatIbanPipe } from '../../../../shared/pipes/format-iban-pipe';
 import { ClientService } from '../../../../core/services/client-service';
-import { form, required, submit, validate } from '@angular/forms/signals';
+import { form, FormField, FormRoot, required, submit, validate } from '@angular/forms/signals';
 import { estIbanFrancaisValide } from '../../../../shared/validators/iban-validator/iban-validator';
+import { Dialog } from 'primeng/dialog';
+import { Select } from 'primeng/select';
+import { InputNumber } from 'primeng/inputnumber';
+import { InputMask } from 'primeng/inputmask';
+import { FormsModule } from '@angular/forms';
 
 
 
 @Component({
   selector: 'app-comptes',
-  imports: [TableModule, FormatSoldePipe, TagModule, Button, ConfirmDialog, FormatIbanPipe  ],
+  imports: [TableModule, FormatSoldePipe, TagModule, Button, ConfirmDialog, FormatIbanPipe, Dialog , FormRoot , FormField , Select , InputNumber , InputMask , FormsModule   ],
   templateUrl: './comptes.html',
   styleUrl: './comptes.scss',
 })

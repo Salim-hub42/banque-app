@@ -1,3 +1,7 @@
+<div class="flex justify-content-end">
+  <p-button label="Ajouter un compte" icon="pi pi-plus" (onClick)="ouvrirDialog()" />
+</div>
+
 @if (error()) {
    <p class="p-error">Erreur de chargement.</p>
 }
@@ -35,3 +39,38 @@
  
 </p-table>
  <p-confirmDialog />
+
+ 
+  <p-dialog
+  header="Nouveau Compte"
+  [(visible)]="dialogOuvert"
+  [modal]="true"
+  [style]="{ width: '500px' }"
+  [draggable]="false"
+  
+>
+
+<form [formRoot]="formCompte" ngNoForm>
+<p-select
+appendTo="body"
+ [options]="clients()"
+ optionLabel="nom"
+ optionValue="id"
+ [ngModel]="formCompte.clientId().value()"
+ (ngModelChange)="formCompte.clientId().value.set($event)"
+ placeholder="Sélectionner un client"
+ class="w-full"
+/>
+
+
+
+
+</form>
+
+
+
+
+
+
+
+ </p-dialog>
