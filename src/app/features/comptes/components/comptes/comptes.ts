@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CompteService } from '../../../../core/services/compte-service';
 import { MessageService } from 'primeng/api';
 import { TableModule } from "primeng/table";
@@ -9,6 +9,9 @@ import { ConfirmationService } from 'primeng/api';
 import { Button } from "primeng/button";
 import { ConfirmDialog } from "primeng/confirmdialog";
 import { FormatIbanPipe } from '../../../../shared/pipes/format-iban-pipe';
+import { ClientService } from '../../../../core/services/client-service';
+import { form, required, submit, validate } from '@angular/forms/signals';
+import { estIbanFrancaisValide } from '../../../../shared/validators/iban-validator/iban-validator';
 
 
 
@@ -27,9 +30,36 @@ export class Comptes {
  isLoading = this.compteService.isLoading;
  error = this.compteService.error;
 
+ private clientService = inject(ClientService);
+ clients = this.clientService.clients;
+
+   // signal pour le dialog/primeNG
+ dialogOuvert = signal(false);
+
  constructor () {
   this.compteService.chargerComptes();
+  this.clientService.chargerClients();
  }
+  
+ formModel = signal<Pick<Compte, 'clientId' | 'type' | 'solde' | 'iban'>>({
+  clientId: '',
+  type: 'courant',
+  solde: 0,
+  iban:'',
+ });
+
+ //faire le formSignal
+ formCompte = form(this.formModel, (cpt) => {
+    required(cpt.clientId);
+    required(cpt.iban);
+    validate(cpt.iban, ctx => estIbanFrancaisValide(ctx.value()) ? null : { kind: 'iban' } );
+    required(cpt.solde);
+    required(cpt.type);
+ })
+
+
+
+
  
  severiteStatut(statut: Compte['statut']) {
     switch (statut) {
@@ -56,8 +86,33 @@ export class Comptes {
     })
  } 
 
+ ouvrirDialog() {
+  this.dialogOuvert.set(true);
+ }
 
+ fermerDialog() {
+  this.dialogOuvert.set(false);
+  this.formModel.set({
+     clientId: '',
+     type: 'courant',
+     solde: 0,
+     iban:'',
+  })
+ }
 
-
+async onSubmit() {
+  await submit(this.formCompte, async (field) => {
+    const ajout:Omit<Compte, 'id'> = {
+      ...field().value(),
+     statut: 'actif',
+     dateOuverture: new Date().toISOString().slice(0, 10)
+    };
+    this.compteService.ajouterCompte(ajout);
+    this.fermerDialog();
+  });
+ }
 
 }
+
+
+

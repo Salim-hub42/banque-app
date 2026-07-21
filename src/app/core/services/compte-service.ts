@@ -4,6 +4,7 @@ import { finalize } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 
+
 @Service()
 export class CompteService {
    private http = inject(HttpClient);
@@ -12,6 +13,8 @@ export class CompteService {
    comptes = signal<Compte[]>([]);
    isLoading = signal(false);
    error = signal<string | null>(null);
+
+ 
 
 
    chargerComptes(clientId = '') {
