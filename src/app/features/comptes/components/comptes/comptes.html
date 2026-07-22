@@ -47,30 +47,55 @@
   [modal]="true"
   [style]="{ width: '500px' }"
   [draggable]="false"
-  
 >
+  <form [formRoot]="formCompte" ngNoForm class="flex flex-column gap-4 pt-2">
 
-<form [formRoot]="formCompte" ngNoForm>
-<p-select
-appendTo="body"
- [options]="clients()"
- optionLabel="nom"
- optionValue="id"
- [ngModel]="formCompte.clientId().value()"
- (ngModelChange)="formCompte.clientId().value.set($event)"
- placeholder="Sélectionner un client"
- class="w-full"
-/>
+    <div class="flex flex-column gap-2">
+      <label class="font-semibold text-sm">Client</label>
+      <p-select
+        appendTo="body"
+        [options]="clients()"
+        optionLabel="nom"
+        optionValue="id"
+        [ngModel]="formCompte.clientId().value()"
+        (ngModelChange)="formCompte.clientId().value.set($event)"
+        placeholder="Sélectionner un client"
+        class="w-full"
+      />
+    </div>
 
+    <div class="flex flex-column gap-2">
+      <label class="font-semibold text-sm">IBAN</label>
+      <input pInputText [formField]="formCompte.iban" placeholder="FR...." class="w-full" />
+      @if (formCompte.iban().invalid() && formCompte.iban().touched()) {
+        <small class="text-red-500">{{ formCompte.iban().errors()[0]?.message }}</small>
+      }
+    </div>
 
+    <div class="flex flex-column gap-2">
+      <label class="font-semibold text-sm">Type</label>
+      <p-select
+        [options]="typeDisponibles"
+        [ngModel]="formCompte.type().value()"
+        (ngModelChange)="formCompte.type().value.set($event)"
+        placeholder="Sélectionner un type"
+        class="w-full"
+      />
+    </div>
 
+    <div class="flex flex-column gap-2">
+      <label class="font-semibold text-sm">Solde</label>
+      <p-input-number
+       class="w-full"
+       [ngModel]="formCompte.solde().value()"
+       (ngModelChange)="formCompte.solde().value.set($event)"
+        />
+    </div>
 
-</form>
+    <div class="flex justify-content-end gap-2 pt-2">
+      <p-button label="Annuler" severity="secondary" (onClick)="fermerDialog()" />
+      <p-button label="Enregistrer" icon="pi pi-check" (onClick)="onSubmit()" />
+    </div>
 
-
-
-
-
-
-
+  </form>
  </p-dialog>

@@ -17,12 +17,13 @@ import { Select } from 'primeng/select';
 import { InputNumber } from 'primeng/inputnumber';
 import { InputMask } from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
+import { InputText } from 'primeng/inputtext';
 
 
 
 @Component({
   selector: 'app-comptes',
-  imports: [TableModule, FormatSoldePipe, TagModule, Button, ConfirmDialog, FormatIbanPipe, Dialog , FormRoot , FormField , Select , InputNumber , InputMask , FormsModule   ],
+  imports: [TableModule, FormatSoldePipe, TagModule, Button, ConfirmDialog, FormatIbanPipe, Dialog , FormRoot , FormField , Select , InputNumber , InputMask , FormsModule, InputText   ],
   templateUrl: './comptes.html',
   styleUrl: './comptes.scss',
 })
@@ -46,21 +47,7 @@ export class Comptes {
   this.clientService.chargerClients();
  }
   
- formModel = signal<Pick<Compte, 'clientId' | 'type' | 'solde' | 'iban'>>({
-  clientId: '',
-  type: 'courant',
-  solde: 0,
-  iban:'',
- });
 
- //faire le formSignal
- formCompte = form(this.formModel, (cpt) => {
-    required(cpt.clientId);
-    required(cpt.iban);
-    validate(cpt.iban, ctx => estIbanFrancaisValide(ctx.value()) ? null : { kind: 'iban' } );
-    required(cpt.solde);
-    required(cpt.type);
- })
 
 
 
@@ -90,6 +77,24 @@ export class Comptes {
        }
     })
  } 
+
+  typeDisponibles: Compte['type'][] = ['courant','epargne'];
+
+  formModel = signal<Pick<Compte, 'clientId' | 'type' | 'solde' | 'iban'>>({
+  clientId: '',
+  type: 'courant',
+  solde: 0,
+  iban:'',
+ });
+
+ //faire le formSignal
+ formCompte = form(this.formModel, (cpt) => {
+    required(cpt.clientId);
+    required(cpt.iban);
+    validate(cpt.iban, ctx => estIbanFrancaisValide(ctx.value()) ? null : { kind: 'iban' } );
+    required(cpt.solde);
+    required(cpt.type);
+ })
 
  ouvrirDialog() {
   this.dialogOuvert.set(true);
