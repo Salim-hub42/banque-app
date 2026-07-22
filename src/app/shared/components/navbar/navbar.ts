@@ -1,13 +1,12 @@
 import { Component, signal, computed, effect, inject } from '@angular/core';
 import { Button } from 'primeng/button';
-import { FormatSoldePipe } from '../../pipes/format-solde-pipe';
-import { MontantNegatif } from '../../directives/montant-negatif';
+
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../core/services/auth-service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [Button, FormatSoldePipe, MontantNegatif, RouterLink, RouterLinkActive], 
+  imports: [Button, RouterLink, RouterLinkActive], 
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
@@ -17,7 +16,7 @@ export class Navbar {
   estConnecte = this.authService.estConnecte;
   nomAffiche = computed(() =>  this.authService.utilisateurConnecte()?.prenom ?? 'Invité');
   nbNotifications = signal<number>(0);
-  solde = signal<number>(10500.50);
+
   messageNotifications = computed(() => {
     const nb = this.nbNotifications();
     if (nb === 0 ) return 'Aucune notification';

@@ -22,11 +22,7 @@
   <!-- Colonne droite : Solde + utilisateur -->
   <div class="flex align-items-center justify-content-end gap-3 py-2" style="flex: 1;">
 
-    @if (estConnecte()) {
-      <span class="text-white text-sm">
-        <strong appMontantNegatif [montant]="solde()">{{ solde() | formatSolde:'EUR':'fr-FR' }}</strong>
-      </span>
-    }
+   
 
     <span class="user-desktop text-white text-sm">Bonjour <strong>{{ nomAffiche() }}</strong> !</span>
 
