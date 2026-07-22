@@ -1,14 +1,18 @@
-<div class="flex justify-content-end">
-  <p-button label="Ajouter un compte" icon="pi pi-plus" (onClick)="ouvrirDialog()" />
-</div>
+<div class="p-5">
+  <div class="flex flex-column gap-4">
 
-@if (error()) {
-   <p class="p-error">Erreur de chargement.</p>
-}
+    <div class="flex justify-content-end">
+      <p-button label="Ajouter un compte" icon="pi pi-plus" (onClick)="ouvrirDialog()" />
+    </div>
+
+    @if (error()) {
+      <p class="p-error">Erreur de chargement.</p>
+    }
 
 <p-table [value]="comptes()" [loading]="isLoading()">
   <ng-template pTemplate="header">
     <tr>
+      <th>Nom</th>
       <th>IBAN</th>
       <th>Type</th>
       <th>Solde</th>
@@ -20,6 +24,7 @@
 
    <ng-template pTemplate="body" let-compte>
     <tr>
+      <td>{{nomClient(compte.clientId)}}</td>
       <td>{{ asCompte(compte).iban | formatIban}}</td>
       <td>{{ asCompte(compte).type }}</td>
       <td>{{ compte.solde | formatSolde }}</td>
@@ -99,3 +104,6 @@
 
   </form>
  </p-dialog>
+
+  </div>
+</div>

@@ -118,15 +118,6 @@
       "solde": 15890.2,
       "statut": "actif",
       "dateOuverture": "2019-09-15"
-    },
-    {
-      "clientId": "2",
-      "type": "epargne",
-      "solde": 14411444,
-      "iban": "FR76 65892589147885472514369",
-      "statut": "actif",
-      "dateOuverture": "2026-07-22",
-      "id": "HEt0DpXbvX4"
     }
   ],
   "transactions": [

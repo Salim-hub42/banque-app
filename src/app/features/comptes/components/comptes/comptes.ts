@@ -110,11 +110,17 @@ export class Comptes {
   })
  }
 
+ nomClient(clientId: string): string {
+  const client = this.clients().find(c => c.id === clientId);
+  return client ? `${client.nom} ${client.prenom}` : 'compte orphelin, donnée corrompue';
+}
+
 async onSubmit() {
   await submit(this.formCompte, async (field) => {
     const ajout:Omit<Compte, 'id'> = {
       ...field().value(),
-     statut: 'actif',
+      iban: field().value().iban.replace(/\s/g, '').toUpperCase(),
+      statut: 'actif',
      dateOuverture: new Date().toISOString().slice(0, 10)
     };
     this.compteService.ajouterCompte(ajout);
