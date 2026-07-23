@@ -15,7 +15,6 @@ import { estIbanFrancaisValide } from '../../../../shared/validators/iban-valida
 import { Dialog } from 'primeng/dialog';
 import { Select } from 'primeng/select';
 import { InputNumber } from 'primeng/inputnumber';
-import { InputMask } from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
 import { InputText } from 'primeng/inputtext';
 
@@ -23,7 +22,7 @@ import { InputText } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-comptes',
-  imports: [TableModule, FormatSoldePipe, TagModule, Button, ConfirmDialog, FormatIbanPipe, Dialog , FormRoot , FormField , Select , InputNumber , InputMask , FormsModule, InputText   ],
+  imports: [TableModule, FormatSoldePipe, TagModule, Button, ConfirmDialog, FormatIbanPipe, Dialog , FormRoot , FormField , Select , InputNumber , FormsModule, InputText   ],
   templateUrl: './comptes.html',
   styleUrl: './comptes.scss',
 })
@@ -121,7 +120,7 @@ async onSubmit() {
       ...field().value(),
       iban: field().value().iban.replace(/\s/g, '').toUpperCase(),
       statut: 'actif',
-     dateOuverture: new Date().toISOString().slice(0, 10)
+      dateOuverture: new Date().toISOString().slice(0, 10)
     };
     this.compteService.ajouterCompte(ajout);
     this.fermerDialog();

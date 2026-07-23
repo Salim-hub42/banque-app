@@ -1,26 +1,80 @@
-<div>
-  <app-section-card>
-    <span titre class="flex align-items-center gap-2 font-semibold text-lg">
-      <i class="pi pi-users"></i>
-       Clients
-    </span>
-       <p class="text-4xl font-bold m-0">{{ clients().length }}</p>
-  </app-section-card>
+<div class="p-5">
+  <div class="flex flex-column gap-4">
 
-    <app-section-card>
-    <span titre class="flex align-items-center gap-2 font-semibold text-lg">
-      <i class="pi pi-chart-pie"></i>
-      Répartition des comptes
-    </span>
-
-    @defer (on viewport; prefetch on idle) {
-      <app-graphique-clients />
-    } @placeholder {
-      <div class="surface-100 border-round" style="height: 300px"></div>
-    } @loading (after 100ms; minimum 500ms) {
-      <div class="flex align-items-center justify-content-center" style="height: 300px">
-        Chargement du graphique…
+    <div class="flex flex-wrap gap-4">
+      <div class="flex-1 w-full md:w-auto">
+        <app-section-card>
+          <span titre class="flex align-items-center gap-2 font-semibold text-lg">
+            <i class="pi pi-users"></i>
+             Clients
+          </span>
+             <p class="text-4xl font-bold m-0">{{ clients().length }}</p>
+        </app-section-card>
       </div>
-    }
-  </app-section-card>
+
+      <div class="flex-1 w-full md:w-auto">
+        <app-section-card>
+          <span titre class="flex align-items-center gap-2 font-semibold text-lg">
+            <i class="pi pi-wallet"></i>
+             Soldes
+          </span>
+             <p class="text-4xl font-bold m-0">{{ soldeTotal() | formatSolde}}</p>
+        </app-section-card>
+      </div>
+
+         <div class="flex-1 w-full md:w-auto">
+     <app-section-card>
+     <span titre class="flex align-items-center gap-2 font-semibold text-lg">
+      <i class="pi pi-check-circle"></i>
+       Comptes actifs
+     </span>
+       <p class="text-4xl font-bold m-0">{{ comptesActifs() }}</p>
+     </app-section-card>
+    </div>
+  
+    </div>
+    
+ 
+
+    <div class="flex flex-wrap gap-4">
+      <div class="flex-1 w-full md:w-auto">
+        <app-section-card>
+          <span titre class="flex align-items-center gap-2 font-semibold text-lg">
+            <i class="pi pi-chart-pie"></i>
+            Répartition par type
+          </span>
+
+          @defer (on viewport; prefetch on idle) {
+            <app-graphique-clients />
+          } @placeholder {
+            <div class="surface-100 border-round" style="height: 300px"></div>
+          } @loading (after 100ms; minimum 500ms) {
+            <div class="flex align-items-center justify-content-center" style="height: 300px">
+              Chargement du graphique…
+            </div>
+          }
+        </app-section-card>
+      </div>
+
+      <div class="flex-1 w-full md:w-auto">
+        <app-section-card>
+          <span titre class="flex align-items-center gap-2 font-semibold text-lg">
+            <i class="pi pi-chart-pie"></i>
+            Répartition par statut
+          </span>
+
+          @defer (on viewport; prefetch on idle) {
+            <app-graphique-status />
+          } @placeholder {
+            <div class="surface-100 border-round" style="height: 300px"></div>
+          } @loading (after 100ms; minimum 500ms) {
+            <div class="flex align-items-center justify-content-center" style="height: 300px">
+              Chargement du graphique…
+            </div>
+          }
+        </app-section-card>
+      </div>
+    </div>
+
+  </div>
 </div>
