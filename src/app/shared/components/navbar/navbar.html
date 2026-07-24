@@ -15,7 +15,7 @@
     <p-button label="Comptes" routerLink="/comptes" routerLinkActive="active" severity="secondary" size="small" />
 
     <span class="text-white text-sm" style="min-width: 120px; text-align: right;">{{ messageNotifications() }}</span>
-    <p-button icon="pi pi-bell" (onClick)="ajouterNotification()" severity="secondary" [rounded]="true" size="small" />
+    <p-button icon="pi pi-bell" [ariaLabel]="messageNotifications()" (onClick)="ajouterNotification()" severity="secondary" [rounded]="true" size="small" />
     <p-button label="Marquer comme lu" (onClick)="marquerCommeLu()" severity="secondary" size="small" />
   </div>
 
@@ -37,6 +37,9 @@
     <p-button
       class="hamburger"
       icon="pi pi-bars"
+      ariaLabel="Menu de navigation"
+      [attr.aria-expanded]="menuOuvert()"
+      aria-controls="menu-mobile"
       (onClick)="toggleMenu()"
       severity="secondary"
       [rounded]="true"
@@ -48,7 +51,7 @@
 
 <!-- Menu mobile -->
 @if (menuOuvert()) {
-  <div class="flex flex-column gap-2 px-4 py-3" style="background-color: var(--boa-navy);">
+  <div id="menu-mobile" class="flex flex-column gap-2 px-4 py-3" style="background-color: var(--boa-navy);">
     <p-button label="Dashboard" routerLink="/dashboard" routerLinkActive="active"
       severity="secondary" size="small" (onClick)="toggleMenu()" styleClass="w-full" />
     <p-button label="Clients" routerLink="/clients" routerLinkActive="active"

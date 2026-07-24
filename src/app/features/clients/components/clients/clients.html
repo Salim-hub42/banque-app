@@ -10,7 +10,7 @@
     </div>
 
     @if (error()) {
-      <p class="p-error">Erreur de chargement.</p>
+      <p role="alert" class="p-error">Erreur de chargement.</p>
     }
 
     <p-table [value]="clients()" [loading]="isLoading()" stripedRows [tableStyle]="{ 'min-width': '50rem' }">
@@ -20,7 +20,7 @@
           <th pSortableColumn="prenom">Prénom <p-sortIcon field="prenom" /></th>
           <th>Email</th>
           <th>Téléphone</th>
-          <th></th>
+          <th>Action</th>
         </tr>
       </ng-template>
 
@@ -62,53 +62,53 @@
 
     <div class="flex gap-3">
       <div class="flex flex-column gap-2 flex-1">
-        <label class="font-semibold text-sm">Nom</label>
-        <input pInputText [formField]="formDialog.nom" placeholder="Martin" class="w-full" />
+        <label for="nom" class="font-semibold text-sm">Nom</label>
+        <input id="nom" pInputText [formField]="formDialog.nom" placeholder="Martin" class="w-full" />
         @if (formDialog.nom().invalid() && formDialog.nom().touched()) {
-          <small class="text-red-500">{{ formDialog.nom().errors()[0]?.message }}</small>
+          <small role="alert" class="text-red-500">{{ formDialog.nom().errors()[0]?.message }}</small>
         }
       </div>
 
       <div class="flex flex-column gap-2 flex-1">
-        <label class="font-semibold text-sm">Prénom</label>
-        <input pInputText [formField]="formDialog.prenom" placeholder="Jean" class="w-full" />
+        <label for="prenom" class="font-semibold text-sm">Prénom</label>
+        <input id="prenom" pInputText [formField]="formDialog.prenom" placeholder="Jean" class="w-full" />
         @if (formDialog.prenom().invalid() && formDialog.prenom().touched()) {
-          <small class="text-red-500">{{ formDialog.prenom().errors()[0]?.message }}</small>
+          <small role="alert" class="text-red-500">{{ formDialog.prenom().errors()[0]?.message }}</small>
         }
       </div>
     </div>
 
     <div class="flex flex-column gap-2">
-      <label class="font-semibold text-sm">Email</label>
-      <input pInputText #champNom  [formField]="formDialog.email" placeholder="jean.martin@email.fr" class="w-full" />
+      <label for="email" class="font-semibold text-sm">Email</label>
+      <input id="email" pInputText #champNom  [formField]="formDialog.email" placeholder="jean.martin@email.fr" class="w-full" />
       @if (formDialog.email().invalid() && formDialog.email().touched()) {
-        <small class="text-red-500">{{ formDialog.email().errors()[0]?.message }}</small>
+        <small role="alert" class="text-red-500">{{ formDialog.email().errors()[0]?.message }}</small>
       }
     </div>
 
     <div class="flex gap-3">
       <div class="flex flex-column gap-2 flex-1">
-        <label class="font-semibold text-sm">Téléphone</label>
-        <input pInputText [formField]="formDialog.telephone" placeholder="06 12 34 56 78" class="w-full" />
+        <label for="telephone" class="font-semibold text-sm">Téléphone</label>
+        <input id="telephone" pInputText [formField]="formDialog.telephone" placeholder="06 12 34 56 78" class="w-full" />
         @if (formDialog.telephone().invalid() && formDialog.telephone().touched()) {
-          <small class="text-red-500">{{ formDialog.telephone().errors()[0]?.message }}</small>
+          <small role="alert" class="text-red-500">{{ formDialog.telephone().errors()[0]?.message }}</small>
         }
       </div>
 
       <div class="flex flex-column gap-2 flex-1">
-        <label class="font-semibold text-sm">Date de naissance</label>
-        <input pInputText [formField]="formDialog.dateNaissance" placeholder="15/05/1996" class="w-full" />
+        <label for="dateNaissance" class="font-semibold text-sm">Date de naissance</label>
+        <input id="dateNaissance" pInputText [formField]="formDialog.dateNaissance" placeholder="15/05/1996" class="w-full" />
         @if (formDialog.dateNaissance().invalid() && formDialog.dateNaissance().touched()) {
-          <small class="text-red-500">{{ formDialog.dateNaissance().errors()[0]?.message }}</small>
+          <small role="alert" class="text-red-500">{{ formDialog.dateNaissance().errors()[0]?.message }}</small>
         }
       </div>
     </div>
 
     <div class="flex flex-column gap-2">
-      <label class="font-semibold text-sm">Adresse</label>
-      <input pInputText [formField]="formDialog.adresse" placeholder="12 rue de la Paix, 75001 Paris" class="w-full" />
+      <label for="adresse" class="font-semibold text-sm">Adresse</label>
+      <input id="adresse" pInputText [formField]="formDialog.adresse" placeholder="12 rue de la Paix, 75001 Paris" class="w-full" />
       @if (formDialog.adresse().invalid() && formDialog.adresse().touched()) {
-        <small class="text-red-500">{{ formDialog.adresse().errors()[0]?.message }}</small>
+        <small role="alert" class="text-red-500">{{ formDialog.adresse().errors()[0]?.message }}</small>
       }
     </div>
 

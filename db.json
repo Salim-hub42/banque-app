@@ -118,6 +118,15 @@
       "solde": 15890.2,
       "statut": "actif",
       "dateOuverture": "2019-09-15"
+    },
+    {
+      "clientId": "3",
+      "type": "courant",
+      "solde": 69855,
+      "iban": "FR7615982589265826582658158",
+      "statut": "actif",
+      "dateOuverture": "2026-07-24",
+      "id": "sRWzJJJNf7E"
     }
   ],
   "transactions": [

@@ -5,7 +5,7 @@ import { SectionCard } from '../../../../shared/components/section-cards/section
 
 @Component({
   selector: 'app-evolution-solde',
-  imports: [SectionCard, UIChart],
+  imports: [ UIChart],
   templateUrl: './evolution-solde.html',
   styleUrl: './evolution-solde.scss',
 })

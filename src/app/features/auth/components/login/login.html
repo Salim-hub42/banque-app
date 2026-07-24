@@ -17,10 +17,10 @@
         <input id="email" pInputText [formField]="loginForm.email" type="email" class="w-full" />
         @if (loginForm.email().touched()) {
           @if (loginForm.email().errors()?.[0]?.kind === 'required') {
-            <small class="p-error">L'email est obligatoire.</small>
+            <small role="alert" class="p-error">L'email est obligatoire.</small>
           }
           @if (loginForm.email().errors()?.[0]?.kind === 'email') {
-            <small class="p-error">Format d'email invalide.</small>
+            <small role="alert" class="p-error">Format d'email invalide.</small>
           }
         }
       </div>
@@ -30,10 +30,10 @@
         <input pInputText id="password" type="password" [formField]="loginForm.password" class="w-full" />
         @if (loginForm.password().touched()) {
           @if (loginForm.password().errors()?.[0]?.kind === 'required') {
-            <small class="p-error">Le mot de passe est obligatoire.</small>
+            <small role="alert" class="p-error">Le mot de passe est obligatoire.</small>
           }
           @if (loginForm.password().errors()?.[0]?.kind === 'minLength') {
-            <small class="p-error">Minimum 6 caractères.</small>
+            <small role="alert" class="p-error">Minimum 6 caractères.</small>
           }
         }
       </div>
