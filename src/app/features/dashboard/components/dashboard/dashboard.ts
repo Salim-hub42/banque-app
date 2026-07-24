@@ -5,10 +5,12 @@ import { GraphiqueClients } from '../graphique-clients/graphique-clients';
 import { CompteService } from '../../../../core/services/compte-service';
 import { FormatSoldePipe } from '../../../../shared/pipes/format-solde-pipe';
 import { GraphiqueStatus } from '../graphique-status/graphique-status';
+import { EvolutionSolde } from "../evolution-solde/evolution-solde";
+
 
 @Component({
   selector: 'app-dashboard',
-  imports: [SectionCard,GraphiqueClients , FormatSoldePipe, GraphiqueStatus],
+  imports: [SectionCard, GraphiqueClients, FormatSoldePipe, GraphiqueStatus, EvolutionSolde],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })

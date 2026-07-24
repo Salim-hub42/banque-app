@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DernieresTransaction } from './dernieres-transaction';
+import { EvolutionSolde } from './evolution-solde';
 
-describe('DernieresTransaction', () => {
-  let component: DernieresTransaction;
-  let fixture: ComponentFixture<DernieresTransaction>;
+describe('EvolutionSolde', () => {
+  let component: EvolutionSolde;
+  let fixture: ComponentFixture<EvolutionSolde>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DernieresTransaction],
+      imports: [EvolutionSolde],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DernieresTransaction);
+    fixture = TestBed.createComponent(EvolutionSolde);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

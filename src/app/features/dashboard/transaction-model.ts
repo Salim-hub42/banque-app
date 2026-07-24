@@ -5,5 +5,5 @@ export interface Transaction
   type: 'depot' | 'virement' | 'retrait';
   montant: number;
   description: string;
-  date: string
+  date: string;
 }

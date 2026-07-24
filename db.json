@@ -133,7 +133,7 @@
       "id": "2",
       "compteId": 1,
       "type": "retrait",
-      "montant": 120.5,
+      "montant": 520.5,
       "description": "Retrait DAB",
       "date": "2026-06-05"
     },
@@ -157,7 +157,7 @@
       "id": "5",
       "compteId": 3,
       "type": "depot",
-      "montant": 1200,
+      "montant": 2200,
       "description": "Virement salaire",
       "date": "2026-06-02"
     }
