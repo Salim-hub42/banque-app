@@ -22,7 +22,7 @@ export class GraphiqueStatus {
 
   data = computed(() => ({
     labels: ['Actif', 'Suspendu' , 'Clôturé'],
-  datasets: [
+    datasets: [
     {
       data: [this.repartition().actif, this.repartition().suspendu , this.repartition().cloture],
       backgroundColor: ['#0ca30c', '#fab219', '#898781' ],

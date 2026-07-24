@@ -23,7 +23,7 @@ repartition = computed(() => {
   
   data = computed(() => ({
     labels: ['Courant', 'Épargne'],
-  datasets: [
+    datasets: [
     {
       data: [this.repartition().courant, this.repartition().epargne],
       backgroundColor: ['#2D4FB2', '#E31837'],
@@ -36,7 +36,7 @@ repartition = computed(() => {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { position: 'bottom' },
+    legend: { position: 'bottom' },
     },
   };
 }
